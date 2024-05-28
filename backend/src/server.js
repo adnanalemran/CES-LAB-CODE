@@ -7,6 +7,9 @@ dotenv.config();
 
 const app = express();
 
+const bodyParser = require("body-parser");
+const bookstoreRoutes = require("../routes/bookstoreRoutes");
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -30,12 +33,12 @@ const port = process.env.PORT || 5000;
 async function setup() {}
 
 setup().then(() => {
-  // Define routes
   app.get("/", (req, res) => {
-    res.send("hi server running...");
+    res.send("server running...");
   });
 
-  // Start the server
+  app.use("/api", bookstoreRoutes);
+
   app.listen(port, () => {
     console.log(`server is running on port ${port}`);
   });
