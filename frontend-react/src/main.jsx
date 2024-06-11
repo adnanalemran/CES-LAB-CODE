@@ -7,6 +7,7 @@ import Login from "./Page/Auth/Login";
 import Dashboard from "./Page/Auth/Dashboard";
 import AddBook from "./components/AddBook";
 import SearchBook from "./Page/SearchBook";
+import PlaceOrder from "./components/PlaceOrder";
 
 const router = createBrowserRouter([
   {
@@ -20,9 +21,13 @@ const router = createBrowserRouter([
   {
     path: "/addbook",
     element: <AddBook />,
-  },  {
+  },
+  {
     path: "/SearchBook",
     element: <SearchBook />,
+  },  {
+    path: "/PlaceOrder",
+    element: <PlaceOrder />,
   },
 ]);
 

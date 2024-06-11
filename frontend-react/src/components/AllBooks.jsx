@@ -26,11 +26,13 @@ const AllBooks = () => {
         <h1 className="text-2xl font-bold mb-4 ">All Books</h1>
         <div className="flex  gap-4 py-3">
           <Link to="/addbook">
-       
             <button className="btn">Add Book</button>
-          </Link>  <Link to="/SearchBook">
-       
+          </Link>{" "}
+          <Link to="/SearchBook">
             <button className="btn ">Search Book</button>
+          </Link>{" "}
+          <Link to="/PlaceOrder">
+            <button className="btn ">Place Order</button>
           </Link>
         </div>
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 h-[60vh]">
