@@ -20,6 +20,8 @@ const addBook = (req, res) => {
     res.send('Book added successfully');
 };
 
+
+
 const searchBook = (req, res) => {
     const { title } = req.query;
     const books = bookstoreService.searchBook(title);
@@ -37,9 +39,16 @@ const placeOrder = (req, res) => {
     }
 };
 
+const showAllBooks = (req, res) => {
+    const books = bookstoreService.getAllBooks();
+    res.json(books);
+};
+
+
 module.exports = {
     registerUser,
     addBook,
     searchBook,
-    placeOrder
+    placeOrder,
+    showAllBooks,
 };
