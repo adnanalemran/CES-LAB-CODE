@@ -27,7 +27,13 @@ const AllBooks = () => {
         <div className="flex  gap-4 py-3">
           <Link to="/addbook">
             <button className="btn">Add Book</button>
-          </Link>{" "}
+          </Link> 
+          <Link to="/Register">
+            <button className="btn">Register user</button>
+          </Link> 
+          <Link to="/Register">
+            <button className="btn">Show users</button>
+          </Link> 
           <Link to="/SearchBook">
             <button className="btn ">Search Book</button>
           </Link>{" "}

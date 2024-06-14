@@ -1,15 +1,26 @@
 const User = require('../models/User');
 
 class AuthService {
-    constructor() {
-        this.users = [];
+  async registerUser(user) {
+    try {
+      const newUser = new User(user);
+      await newUser.save();
+    } catch (err) {
+      throw new Error('Error registering user: ' + err.message);
     }
-    registerUser(user) {
-        this.users.push(user);
+  }
+
+  async findUserById(userId) {
+    return await User.findOne({ userId });
+  }
+
+  async getAllUsers() {
+    try {
+      return await User.find();
+    } catch (err) {
+      throw new Error('Error fetching users: ' + err.message);
     }
-    authenticate(email, password) {
-        return this.users.find(user => user.email === email && user.password === password);
-    }
+  }
 }
 
 module.exports = AuthService;

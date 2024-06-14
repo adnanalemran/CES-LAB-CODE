@@ -1,27 +1,26 @@
+const Book = require('../models/Book');
+
 class BookstoreService {
-    constructor() {
-        this.books = [];
+  async addBook(book) {
+    try {
+      const newBook = new Book(book);
+      await newBook.save();
+    } catch (err) {
+      throw new Error('Error adding book: ' + err.message);
     }
+  }
 
-    addBook(book) {
-        this.books.push(book);
-    }
+  async searchBook(title) {
+    return await Book.find({ title: new RegExp(title, 'i') });
+  }
 
-    searchBook(title) {
-        return this.books.filter(book => book.title.toLowerCase().includes(title.toLowerCase()));
-    }
+  async getAllBooks() {
+    return await Book.find();
+  }
 
-    getAllBooks() {
-        return this.books;
-    }
-
-    placeOrder(user, bookIsbns) {
-        const orderedBooks = this.books.filter(book => bookIsbns.includes(book.isbn));
-        return {
-            user,
-            orderedBooks
-        };
-    }
+  async placeOrder(user, bookIsbns) {
+    // Implement order placement logic here, if needed
+  }
 }
 
 module.exports = BookstoreService;

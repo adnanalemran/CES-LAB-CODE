@@ -1,19 +1,14 @@
 const express = require('express');
-const {
-    registerUser,
-    addBook,
-    searchBook,
-    showAllBooks,
-    placeOrder
-} = require('../controllers/bookstoreController');
+const BookstoreController = require('../controllers/BookstoreController');
 
 const router = express.Router();
+const bookstoreController = new BookstoreController();
 
-router.post('/register', registerUser);
-router.post('/addBook', addBook);
-router.get('/books', showAllBooks);
-
-router.get('/searchBook', searchBook);
-router.post('/placeOrder', placeOrder);
+router.post('/register', bookstoreController.registerUser.bind(bookstoreController));
+router.post('/addBook', bookstoreController.addBook.bind(bookstoreController));
+router.get('/books', bookstoreController.showAllBooks.bind(bookstoreController));
+router.get('/searchBook', bookstoreController.searchBook.bind(bookstoreController));
+router.post('/placeOrder', bookstoreController.placeOrder.bind(bookstoreController));
+router.get('/users', bookstoreController.showAllUsers.bind(bookstoreController));  
 
 module.exports = router;
