@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const AddBook = () => {
   const [isbn, setIsbn] = useState("");
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [price, setPrice] = useState("");
- 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +22,6 @@ const AddBook = () => {
       setTitle("");
       setAuthor("");
       setPrice("");
-  
     } catch (error) {
       console.error("There was an error adding the book!", error);
       toast.error("Failed to add book");
@@ -31,10 +30,31 @@ const AddBook = () => {
 
   return (
     <div className="container mx-auto border-2 rounded-xl   ">
-      <h1 className="text-2xl font-bold mb-4 bg-slate-500 text-white py-7 px-4">
-        Edu Connect
-      </h1>
-
+       <Link to="/dashboard">
+        <h1 className="text-2xl font-bold mb-4 bg-slate-500 text-white py-7 px-4">
+          Edu Connect
+        </h1>
+      </Link>
+      <div className="flex  gap-4 px-3">
+        <Link to="/addbook">
+          <button className="btn">Add Book</button>
+        </Link>
+        <Link to="/Register">
+          <button className="btn">Register user</button>
+        </Link>
+        <Link to="/users">
+          <button className="btn">Show users</button>
+        </Link>
+        <Link to="/SearchBook">
+          <button className="btn ">Search Book</button>
+        </Link>{" "}
+        <Link to="/PlaceOrder">
+          <button className="btn ">Place Order</button>
+        </Link>
+        <Link to="/PlaceOrder">
+          <button className="btn ">Orders</button>
+        </Link>
+      </div>
       <div className="p-4">
         <h1 className="text-2xl font-bold mb-4">Add Book</h1>
         <form onSubmit={handleSubmit} className="bg-white p-4 rounded shadow">

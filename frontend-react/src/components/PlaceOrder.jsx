@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const PlaceOrder = () => {
   const [userId, setUserId] = useState('');
   const [bookIsbns, setBookIsbns] = useState('');
@@ -13,6 +15,9 @@ const PlaceOrder = () => {
       const response = await axios.post('http://localhost:5000/api/placeOrder', { userId, bookIsbns });
       setOrderDetails(response.data);
       setError('');
+      toast.success("Order added successfully");
+ 
+
     } catch (error) {
       console.error('Error placing order:', error);
       setError('Failed to place order. Please try again.');
@@ -20,7 +25,32 @@ const PlaceOrder = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto border-2 rounded-xl   ">
+    <Link to="/dashboard">
+      <h1 className="text-2xl font-bold mb-4 bg-slate-500 text-white py-7 px-4">
+        Edu Connect
+      </h1>
+    </Link>
+    <div className="flex  gap-4 p-3">
+      <Link to="/addbook">
+        <button className="btn">Add Book</button>
+      </Link>
+      <Link to="/Register">
+        <button className="btn">Register user</button>
+      </Link>
+      <Link to="/users">
+        <button className="btn">Show users</button>
+      </Link>
+      <Link to="/SearchBook">
+        <button className="btn ">Search Book</button>
+      </Link>{" "}
+      <Link to="/PlaceOrder">
+        <button className="btn ">Place Order</button>
+      </Link>
+      <Link to="/PlaceOrder">
+        <button className="btn ">Orders</button>
+      </Link>
+    </div>
       <h1 className="text-3xl font-bold mb-8 text-center text-gray-800">Place Order</h1>
       {error && <p className="text-red-500 mb-4">{error}</p>}
       {orderDetails && (
@@ -30,7 +60,7 @@ const PlaceOrder = () => {
           <p>Total Price: ${orderDetails.totalPrice}</p>
         </div>
       )}
-      <form onSubmit={handleSubmit}>
+      <form className='p-4' onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="userId" className="block text-gray-700">User ID:</label>
           <input
@@ -53,6 +83,8 @@ const PlaceOrder = () => {
         </div>
         <button type="submit" className="btn btn-primary">Place Order</button>
       </form>
+      
+      <ToastContainer />
     </div>
   );
 };
