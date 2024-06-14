@@ -9,6 +9,7 @@ import AddBook from "./components/AddBook";
 import SearchBook from "./Page/SearchBook";
 import PlaceOrder from "./components/PlaceOrder";
 import Adduser from "./components/Adduser";
+import ShowUsers from "./components/ShowUsers";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,9 @@ const router = createBrowserRouter([
   {
     path: "/Register",
     element: <Adduser />,
+  },  {
+    path: "/users",
+    element: <ShowUsers />,
   },
 ]);
 
