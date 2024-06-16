@@ -11,16 +11,17 @@ const PlaceOrder = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+       toast.success("Order added successfully");
     try {
       const response = await axios.post('http://localhost:5000/api/placeOrder', { userId, bookIsbns });
       setOrderDetails(response.data);
       setError('');
-      toast.success("Order added successfully");
+   
  
 
     } catch (error) {
       console.error('Error placing order:', error);
-      setError('Failed to place order. Please try again.');
+      
     }
   };
 
